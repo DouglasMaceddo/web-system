@@ -1,0 +1,43 @@
+<header>
+  <div class="welcome-message">
+    Entrar
+  </div>
+  <div class="whatsapp-icon">
+    <a href="https://wa.me/5511999999999" target="_blank">
+      <img src="assets/whatsapp-brands-solid.svg" alt="WhatsApp" width="30" height="30" />
+    </a>
+    <a href="https://www.instagram.com/" target="_blank">
+      <img src="assets/instagram-brands-solid.svg" alt="WhatsApp" width="30" height="30" />
+    </a>
+  </div>
+  <button (click)="onLogout()" class="logout-button">
+    <img class="logout" src="assets/right-from-bracket-solid.svg" alt="Sair" width="15" height="15" />
+    <span>Sair</span>
+  </button>
+</header>
+
+<div class="catalogo">
+  <div class="barrapesquisa">
+    <input type="text" placeholder="Oque você procura ?" [(ngModel)]="pesquisa" (input)="filtrarProdutos()"
+      class="input-pesquisa" />
+  </div>
+
+  <h2 class="catalogo-titulo">Catálogo de Produtos</h2>
+</div>
+<div>
+  <div class="produtos-container">
+    <div class="produto" *ngFor="let produto of produtosFiltrados">
+      <div class="produto-imagem">
+        <img [src]="produto.imagemUrl" alt="{{ produto.nome }}" />
+      </div>
+      <div class="produto-detalhes">
+        <h3 class="produto-nome">{{ produto.nome }}</h3>
+        <p class="produto-descricao">{{ produto.descricao }}</p>
+        <p class="produto-preco">
+          <strong>R$ {{ produto.preco | number: '1.2-2' }}</strong>
+        </p>
+        <button class="btn-comprar">Comprar Agora</button>
+      </div>
+    </div>
+  </div>
+</div>
