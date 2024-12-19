@@ -1,19 +1,20 @@
 <header>
-  <div class="welcome-message">
-    Entrar
-  </div>
   <div class="whatsapp-icon">
     <a href="https://wa.me/5511999999999" target="_blank">
       <img src="assets/whatsapp-brands-solid.svg" alt="WhatsApp" width="30" height="30" />
     </a>
     <a href="https://www.instagram.com/" target="_blank">
-      <img src="assets/instagram-brands-solid.svg" alt="WhatsApp" width="30" height="30" />
+      <img src="assets/instagram-brands-solid.svg" alt="instagram" width="30" height="30" />
     </a>
   </div>
   <button (click)="onLogout()" class="logout-button">
     <img class="logout" src="assets/right-from-bracket-solid.svg" alt="Sair" width="15" height="15" />
     <span>Sair</span>
   </button>
+  <button (click)="navigateCarrinho()">
+    <img class="whatsapp-icon" src="assets/cart-shopping-solid.svg" alt="Carrinho" width="20" height="20" />
+  </button>
+  
 </header>
 
 <div class="catalogo">
@@ -21,8 +22,18 @@
     <input type="text" placeholder="Oque você procura ?" [(ngModel)]="pesquisa" (input)="filtrarProdutos()"
       class="input-pesquisa" />
   </div>
-
   <h2 class="catalogo-titulo">Catálogo de Produtos</h2>
+  <div class="category-menu">
+    <ul>
+      <li><a (click)="filtrarPorCategoria('Acessório')">Acessórios</a></li>
+      <li><a (click)="filtrarPorCategoria('Camiseta')">Camisetas</a></li>
+      <li><a (click)="filtrarPorCategoria('Calça')">Calças</a></li>
+      <li><a (click)="filtrarPorCategoria('Vestido')">Vestidos</a></li>
+      <li><a (click)="filtrarPorCategoria('Promoção')">Promoções</a></li>
+      <li><a (click)="filtrarPorCategoria('Praia')">Moda Praia</a></li>
+      <li><a (click)="filtrarPorCategoria('Infantil')">Infantil</a></li>
+    </ul>
+  </div>
 </div>
 <div>
   <div class="produtos-container">

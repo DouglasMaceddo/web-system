@@ -111,16 +111,10 @@
 
 header {
   display: flex;
-  justify-content: space-between; /* Alinha os elementos no header */
-  align-items: center; /* Alinha verticalmente os elementos */
-  padding: 10px 20px; /* Reduz o espaço interno (padding) */
-  background-color: #ff00aa; /* Cor de fundo */
-}
-
-.welcome-message {
-  font-size: 18px;
-  font-weight: bold;
-  color: #ffffff;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ff00aa;
 }
 
 .whatsapp-icon img {
@@ -156,4 +150,35 @@ header {
 
 .logout {
   margin-right: 10px;
+}
+
+.category-menu {
+  margin-top: 30px;
+}
+
+.category-menu ul {
+  list-style-type: none;
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  padding: 10px;
+}
+
+.category-menu ul li {
+  display: inline;
+}
+
+.category-menu ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 5px 10px;
+  transition: background-color 0.3s;
+}
+
+.category-menu ul li a:hover {
+  background-color: #ad0375;
+  border-radius: 6px;
 }
