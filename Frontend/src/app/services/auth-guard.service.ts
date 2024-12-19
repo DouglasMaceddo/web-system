@@ -12,6 +12,11 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
+      if (next.routeConfig?.path === 'Catalogo') {
+        return true;
+      }
+
     const authToken = sessionStorage.getItem('auth-token');
 
     if (authToken) {
