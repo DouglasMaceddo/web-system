@@ -1,0 +1,23 @@
+<div class="carrinho">
+    <h2>Carrinho de Compras</h2>
+  
+    <div *ngIf="carrinho.itens.length === 0">
+      <p>O carrinho está vazio.</p>
+    </div>
+  
+    <div *ngFor="let item of carrinho.itens" class="item">
+      <img [src]="item.produto.imagemUrl" alt="{{ item.produto.nome }}" class="imagem-produto" />
+      <div class="detalhes">
+        <h3>{{ item.produto.nome }}</h3>
+        <p>R$ {{ item.produto.preco | number: '1.2-2' }} x {{ item.quantidade }}</p>
+        <button (click)="removerProduto(item.id)">Remover</button>
+      </div>
+    </div>
+  
+    <div class="total">
+      <h3>Total: R$ {{ carrinho.total | number: '1.2-2' }}</h3>
+    </div>
+  
+    <button (click)="limparCarrinho()">Limpar Carrinho</button>
+  </div>
+  
