@@ -16,7 +16,7 @@ public class ProdutoController {
 
     @GetMapping("/catalogo")
     public List<Produto> getCatalogo() {
-        return produtoService.getTodosProdutos(); // Retorna a lista de produtos
+        return produtoService.getTodosProdutos();
     }
 }
 
