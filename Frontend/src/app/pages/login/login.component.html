@@ -1,0 +1,38 @@
+<div class="login-container">
+    <h2>Login</h2>
+  
+    <!-- Formulário de Login -->
+    <form [formGroup]="loginForm" (ngSubmit)="submit()" class="login-form">
+  
+      <!-- Campo E-mail -->
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" formControlName="email" placeholder="Digite seu e-mail" class="form-control" />
+        <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched" class="error-message">
+          E-mail inválido.
+        </div>
+      </div>
+  
+      <!-- Campo Senha -->
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input id="password" type="password" formControlName="password" placeholder="Digite sua senha" class="form-control" />
+        <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="error-message">
+          A senha deve ter pelo menos 6 caracteres.
+        </div>
+      </div>
+  
+      <!-- Botão de Enviar -->
+      <div class="form-group">
+        <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">
+          Entrar
+        </button>
+      </div>
+    </form>
+  
+    <!-- Navegação para Cadastro -->
+    <div class="signup-redirect">
+      <p>Não tem uma conta? <a (click)="navigate()">Cadastre-se</a></p>
+    </div>
+  </div>
+  
