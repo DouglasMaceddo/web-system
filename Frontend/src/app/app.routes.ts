@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/signup/signup.component';
 import { CatalogoComponent } from './pages/catalogo/catalogo.component';
-import { AuthGuard } from './services/auth-guard.service';
+import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
 
 export const routes: Routes = [
     {
@@ -20,8 +20,10 @@ export const routes: Routes = [
     {
         path: "Catalogo",
         component: CatalogoComponent
-        
-        
     },
+    {
+        path: "Carrinho",
+        component: CarrinhoComponent
+    }
     
 ];
