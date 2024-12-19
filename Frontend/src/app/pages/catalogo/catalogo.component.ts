@@ -5,6 +5,8 @@ import { Router, RouterModule } from '@angular/router';
 import { Produto } from '../../Models/produto.model';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
+import { CarrinhoService } from '../../services/carrinho.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-catalogo',
@@ -16,36 +18,52 @@ import { LoginService } from '../../services/login.service';
 })
 export class CatalogoComponent {
 
-  produtos: Produto [] = [];
+  produtos: Produto[] = [];
   produtosFiltrados: Produto[] = [];
   pesquisa: string = '';
-  firstName: string = ''; 
+  firstName: string = '';
+  categoriaSelecionada: String = '';
+  carrinhoId: number = 0;
+  quantidade: { [key: number]: number } = {};
 
-  constructor(private catalogoService: CatalogoService, private loginService: LoginService,private router: Router){}
+  constructor(private catalogoService: CatalogoService, private carrinhoService: CarrinhoService,
+              private loginService: LoginService, private router: Router,  private toastService: ToastrService) { }
 
   ngOnInit(): void {
     this.catalogoService.getCatalogo().subscribe(
       (data: Produto[]) => {
-        this.produtos = data; // Preenche os produtos com os dados recebidos do backend
-        this.produtosFiltrados = data; // Inicializa os produtos filtrados com todos os produtos
+        this.produtos = data;
+        this.produtosFiltrados = data;
       },
       (error) => {
-        console.error('Erro ao carregar os produtos:', error); // Exibe erro se a requisição falhar
+        console.error('Erro ao carregar os produtos:', error);
       }
+    );
+  }
+  
+  filtrarPorCategoria(categoria: string): void {
+    this.categoriaSelecionada = categoria;
+    this.produtosFiltrados = this.produtos.filter(produto =>
+      produto.categoria.toLowerCase() === categoria.toLowerCase()
     );
   }
 
   filtrarProdutos(): void {
     if (this.pesquisa) {
-      this.produtosFiltrados = this.produtos.filter(produto => 
-        produto.nome.toLowerCase().includes(this.pesquisa.toLowerCase()) || 
+      this.produtosFiltrados = this.produtos.filter(produto =>
+        produto.nome.toLowerCase().includes(this.pesquisa.toLowerCase()) ||
         produto.categoria.toLowerCase().includes(this.pesquisa.toLowerCase())
       );
     } else {
       this.produtosFiltrados = this.produtos;
     }
   }
+
   onLogout(): void {
     this.loginService.logout();
+  }
+
+  navigateCarrinho(){
+    this.router.navigate(["Carrinho"])
   }
 }
