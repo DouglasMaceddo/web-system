@@ -27,6 +27,7 @@ export class LoginService {
       })
     )
   }
+  
   logout(): void {
     sessionStorage.removeItem('auth-token');
     this.router.navigate(['/Login']);

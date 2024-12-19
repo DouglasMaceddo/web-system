@@ -15,10 +15,7 @@ export class CatalogoService {
 
   getCatalogo(): Observable<Produto[]> {
     const token = sessionStorage.getItem('auth-token');
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
+    const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
     return this.http.get<Produto[]>(this.apiUrl, { headers });
   }
 }
