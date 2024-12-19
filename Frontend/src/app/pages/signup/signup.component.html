@@ -1,0 +1,56 @@
+<div class="signup-container">
+    <h2>Cadastro de Usuário</h2>
+  
+    <!-- Formulário de Cadastro -->
+    <form [formGroup]="signupForm" (ngSubmit)="submit()" class="signup-form">
+      
+      <!-- Campo Nome -->
+      <div class="form-group">
+        <label for="name">Nome e Sobrenome</label>
+        <input id="name" type="text" formControlName="name" placeholder="Digite seu nome" class="form-control" />
+        <div *ngIf="signupForm.controls['name'].invalid && signupForm.controls['name'].touched" class="error-message">
+          Nome é obrigatório e deve ter pelo menos 3 caracteres.
+        </div>
+      </div>
+  
+      <!-- Campo E-mail -->
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" formControlName="email" placeholder="Digite seu e-mail" class="form-control" />
+        <div *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched" class="error-message">
+          E-mail inválido.
+        </div>
+      </div>
+  
+      <!-- Campo Senha -->
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input id="password" type="password" formControlName="password" placeholder="Digite sua senha" class="form-control" />
+        <div *ngIf="signupForm.controls['password'].invalid && signupForm.controls['password'].touched" class="error-message">
+          A senha deve ter pelo menos 6 caracteres.
+        </div>
+      </div>
+  
+      <!-- Campo Confirmação de Senha -->
+      <div class="form-group">
+        <label for="passwordConfirm">Confirmar Senha</label>
+        <input id="passwordConfirm" type="password" formControlName="passwordConfirm" placeholder="Confirme sua senha" class="form-control" />
+        <div *ngIf="signupForm.controls['passwordConfirm'].invalid && signupForm.controls['passwordConfirm'].touched" class="error-message">
+          A senha de confirmação deve ser igual à senha.
+        </div>
+      </div>
+  
+      <!-- Botão de Enviar -->
+      <div class="form-group">
+        <button type="submit" [disabled]="signupForm.invalid" class="btn btn-primary">
+          Criar Conta
+        </button>
+      </div>
+    </form>
+  
+    <!-- Navegação para Login -->
+    <div class="login-redirect">
+      <p>Já tem uma conta? <a (click)="navigate()">Faça login</a></p>
+    </div>
+  </div>
+  
