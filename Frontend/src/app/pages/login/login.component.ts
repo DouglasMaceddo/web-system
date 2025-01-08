@@ -29,28 +29,47 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private loginService: LoginService,
-    private toastService: ToastrService){
+    private toastService: ToastrService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     })
   }
 
-  submit(){
-    if (this.loginForm.valid) {
-      this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-        next: () => {
-          this.toastService.success("Login realizado com sucesso!");
-          this.router.navigate(["Catalogo"]);
-        },
-        error: () => {
-          this.toastService.error("Credenciais inválidas. Tente novamente.");
-        }
-      });
+  submit() {
+    // Verifica se o formulário é válido antes de prosseguir
+    if (!this.loginForm.valid) {
+      return;
     }
+  
+    // Desestrutura os valores do formulário para melhorar a leitura
+    const { email, password } = this.loginForm.value;
+  
+    // Chama o serviço de login
+    this.loginService.login(email, password).subscribe({
+      next: (response: any) => {
+        // Armazena o token de autenticação no sessionStorage
+        sessionStorage.setItem('auth-token', response.token);
+  
+        // Verifica o papel do usuário e navega conforme necessário
+        const role = response.role;
+        if (role === 'ADMIN') {
+          this.router.navigate(['/administrador']);
+        } else {
+          this.router.navigate(['Catalogo']);
+        }
+  
+        // Exibe a mensagem de sucesso usando o serviço de toast
+        this.toastService.success("Login realizado com sucesso!");
+      },
+      error: () => {
+        // Exibe a mensagem de erro se o login falhar
+        this.toastService.error("Credenciais inválidas. Tente novamente.");
+      }
+    });
   }
 
-  navigate(){
+  navigate() {
     this.router.navigate(["Cadastro"])
   }
 }

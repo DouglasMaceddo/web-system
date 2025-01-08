@@ -19,4 +19,3 @@ public class ProdutoController {
         return produtoService.getTodosProdutos();
     }
 }
-

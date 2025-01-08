@@ -3,6 +3,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/signup/signup.component';
 import { CatalogoComponent } from './pages/catalogo/catalogo.component';
 import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 export const routes: Routes = [
     {
@@ -24,6 +25,11 @@ export const routes: Routes = [
     {
         path: "Carrinho",
         component: CarrinhoComponent
+    },
+    {
+        path: "Administrador",
+        component: AdminComponent
+
     }
-    
+
 ];

@@ -1,75 +1,86 @@
 .signup-container {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .signup-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .input, .form-control {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  input[type="text"], input[type="email"], input[type="password"] {
-    margin-bottom: 8px;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-  
-  .btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .btn:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
-  .login-redirect {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .login-redirect a {
-    color: #007BFF;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
+  width: 100%;
+  max-width: 500px; /* Aumentando a largura máxima */
+  margin: 0 auto;
+  padding: 40px; /* Aumentando o padding */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra mais forte */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px; /* Aumentando o espaçamento inferior */
+  font-size: 32px; /* Aumentando o tamanho da fonte */
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px; /* Aumentando o espaçamento entre os campos */
+}
+
+label {
+  font-size: 16px; /* Aumentando o tamanho da fonte */
+  font-weight: bold;
+  margin-bottom: 8px; /* Aumentando o espaçamento inferior do label */
+}
+
+.input, .form-control {
+  width: 100%;
+  padding: 12px; /* Aumentando o padding dos campos */
+  font-size: 16px; /* Aumentando o tamanho da fonte */
+  border: 1px solid #ccc;
+  border-radius: 6px; /* Tornando os cantos mais arredondados */
+  box-sizing: border-box;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+  margin-bottom: 12px; /* Aumentando o espaçamento inferior dos campos */
+}
+
+.error-message {
+  color: red;
+  font-size: 14px; /* Aumentando o tamanho da mensagem de erro */
+  margin-top: 5px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px; /* Aumentando o padding do botão */
+  font-size: 18px; /* Aumentando o tamanho da fonte do botão */
+  border: none;
+  border-radius: 6px; /* Tornando os cantos do botão mais arredondados */
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Cor de hover mais forte */
+}
+
+.btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.login-redirect {
+  text-align: center;
+  margin-top: 30px; /* Aumentando o espaçamento superior */
+}
+
+.login-redirect a {
+  color: #007BFF;
+  cursor: pointer;
+  font-size: 16px; /* Aumentando o tamanho da fonte */
+  text-decoration: none;
+}
+
+.login-redirect a:hover {
+  text-decoration: underline;
+}

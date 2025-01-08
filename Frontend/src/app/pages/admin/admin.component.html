@@ -1,0 +1,56 @@
+<div class="admin-container">
+  <h2>Gerenciar Produtos</h2>
+
+  <div class="produto-form">
+    <h3>Adicionar Novo Produto</h3>
+    <div class="form-group">
+      <label for="nome">Nome do Produto</label>
+      <input id="nome" [(ngModel)]="produto.nome" placeholder="Nome do Produto" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="descricao">Descrição</label>
+      <textarea id="descricao" [(ngModel)]="produto.descricao" placeholder="Descrição do Produto" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="preco">Preço</label>
+      <input id="preco" [(ngModel)]="produto.preco" placeholder="Preço" type="number" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="categoria">Categoria</label>
+      <input id="categoria" [(ngModel)]="produto.categoria" placeholder="Categoria" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="imagemUrl">Imagem URL</label>
+      <input id="imagemUrl" [(ngModel)]="produto.imagemUrl" placeholder="URL da Imagem" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="tamanho">Tamanho</label>
+      <input id="tamanho" [(ngModel)]="produto.tamanho" placeholder="Tamanho" class="form-control" />
+    </div>
+
+    <button (click)="addProduto()" class="btn btn-primary">Adicionar Produto</button>
+  </div>
+
+  <div class="produto-list">
+    <h3>Lista de Produtos</h3>
+    <div *ngFor="let produto of produtos" class="produto-card">
+      <div class="produto-info">
+        <h4>{{ produto.nome }}</h4>
+        <p><strong>Categoria:</strong> {{ produto.categoria }}</p>
+        <p><strong>Preço:</strong> R$ {{ produto.preco }}</p>
+        <p><strong>Tamanho:</strong> {{ produto.tamanho }}</p>
+        <p><strong>Descrição:</strong> {{ produto.descricao }}</p>
+      </div>
+
+      <div class="produto-actions">
+        <button (click)="updateProduto(produto)" class="btn btn-warning">Atualizar</button>
+        <button (click)="deleteProduto(produto.id)" class="btn btn-danger">Deletar</button>
+      </div>
+    </div>
+  </div>
+</div>
