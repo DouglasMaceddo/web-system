@@ -128,3 +128,14 @@ button {
     margin-bottom: 15px;
   }
 }
+
+.upload-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaço entre os campos */
+}
+
+.form-control-file {
+  max-width: 200px; /* Ajuste o tamanho do botão de upload, se necessário */
+}
+

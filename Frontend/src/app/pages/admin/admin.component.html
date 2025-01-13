@@ -1,5 +1,13 @@
 <div class="admin-container">
   <h2>Gerenciar Produtos</h2>
+  <button (click)="onLogout()" class="logout-button">
+    <img class="logout" src="assets/right-from-bracket-solid.svg" alt="Sair" width="15" height="15" />
+    <span>Sair</span>
+  </button>
+
+  <button (click)="navigateCatalogo()" class="logout-button">
+    <span>Catalogo</span>
+  </button>
 
   <div class="produto-form">
     <h3>Adicionar Novo Produto</h3>
@@ -10,7 +18,8 @@
 
     <div class="form-group">
       <label for="descricao">Descrição</label>
-      <textarea id="descricao" [(ngModel)]="produto.descricao" placeholder="Descrição do Produto" class="form-control"></textarea>
+      <textarea id="descricao" [(ngModel)]="produto.descricao" placeholder="Descrição do Produto"
+        class="form-control"></textarea>
     </div>
 
     <div class="form-group">
@@ -19,18 +28,43 @@
     </div>
 
     <div class="form-group">
-      <label for="categoria">Categoria</label>
-      <input id="categoria" [(ngModel)]="produto.categoria" placeholder="Categoria" class="form-control" />
+      <label for="Categoria">Categoria</label>
+      <select id="Categoria" [(ngModel)]="produto.categoria" class="form-control">
+        <option *ngFor="let categoria of categorias" [value]="categoria">
+          {{ categoria }}
+        </option>
+      </select>
     </div>
 
     <div class="form-group">
-      <label for="imagemUrl">Imagem URL</label>
-      <input id="imagemUrl" [(ngModel)]="produto.imagemUrl" placeholder="URL da Imagem" class="form-control" />
+      <label for="imagemUrl">Imagem</label>
+      <div class="upload-container">
+        <input
+          id="imagemUrl"
+          [(ngModel)]="produto.imagemUrl"
+          placeholder="URL da Imagem"
+          class="form-control"
+          type="text"
+        />
+        <input
+          type="file"
+          id="imagemUpload"
+          (change)="onFileSelected($event)"
+          class="form-control-file"
+          accept="image/*"
+        />
+      </div>
     </div>
+    
 
     <div class="form-group">
-      <label for="tamanho">Tamanho</label>
-      <input id="tamanho" [(ngModel)]="produto.tamanho" placeholder="Tamanho" class="form-control" />
+      <label for="Tamanho">Tamanho</label>
+      <select id="Tamanho" [(ngModel)]="produto.tamanho" class="form-control">
+        <option *ngFor="let tamanho of tamanhos" [value]="tamanho">
+          {{ tamanho}}
+        </option>
+      </select>
+
     </div>
 
     <button (click)="addProduto()" class="btn btn-primary">Adicionar Produto</button>
@@ -41,6 +75,7 @@
     <div *ngFor="let produto of produtos" class="produto-card">
       <div class="produto-info">
         <h4>{{ produto.nome }}</h4>
+        <p><strong>ID:</strong> {{produto.id}}</p>
         <p><strong>Categoria:</strong> {{ produto.categoria }}</p>
         <p><strong>Preço:</strong> R$ {{ produto.preco }}</p>
         <p><strong>Tamanho:</strong> {{ produto.tamanho }}</p>
