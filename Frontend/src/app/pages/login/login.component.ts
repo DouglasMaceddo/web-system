@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormRecord, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { ToastrService } from 'ngx-toastr';
@@ -37,39 +37,29 @@ export class LoginComponent {
   }
 
   submit() {
-    // Verifica se o formulário é válido antes de prosseguir
     if (!this.loginForm.valid) {
       return;
     }
-  
-    // Desestrutura os valores do formulário para melhorar a leitura
     const { email, password } = this.loginForm.value;
-  
-    // Chama o serviço de login
     this.loginService.login(email, password).subscribe({
       next: (response: any) => {
-        // Armazena o token de autenticação no sessionStorage
         sessionStorage.setItem('auth-token', response.token);
-  
-        // Verifica o papel do usuário e navega conforme necessário
         const role = response.role;
-        if (role === 'ADMIN') {
-          this.router.navigate(['/administrador']);
+        if (role === 'admin') {
+          this.router.navigate(['/Administrador']);
         } else {
-          this.router.navigate(['Catalogo']);
+          this.router.navigate(['/Catalogo']);
         }
-  
-        // Exibe a mensagem de sucesso usando o serviço de toast
+        
         this.toastService.success("Login realizado com sucesso!");
       },
       error: () => {
-        // Exibe a mensagem de erro se o login falhar
         this.toastService.error("Credenciais inválidas. Tente novamente.");
       }
     });
   }
 
   navigate() {
-    this.router.navigate(["Cadastro"])
+    this.router.navigate(["/Cadastro"])
   }
 }

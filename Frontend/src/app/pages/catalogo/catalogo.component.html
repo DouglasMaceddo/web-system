@@ -11,10 +11,6 @@
     <img class="logout" src="assets/right-from-bracket-solid.svg" alt="Sair" width="15" height="15" />
     <span>Sair</span>
   </button>
-  <button (click)="navigateCarrinho()">
-    <img class="whatsapp-icon" src="assets/cart-shopping-solid.svg" alt="Carrinho" width="20" height="20" />
-  </button>
-  
 </header>
 
 <div class="catalogo">
@@ -43,7 +39,7 @@
       </div>
       <div class="produto-detalhes">
         <h3 class="produto-nome">{{ produto.nome }}</h3>
-        <p class="produto-descricao">{{ produto.descricao }}</p>
+        <p class="produto-categoria-tamanho">{{ produto.tamanho }}</p>
         <p class="produto-preco">
           <strong>R$ {{ produto.preco | number: '1.2-2' }}</strong>
         </p>

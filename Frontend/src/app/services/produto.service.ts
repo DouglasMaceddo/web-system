@@ -13,7 +13,9 @@ export class ProdutoService {
   constructor(private http: HttpClient) { }
 
   getCatalogo(): Observable<Produto[]> {
-    return this.http.get<Produto[]>(`${this.apiUrl}/Catalogo`);
+    const token = sessionStorage.getItem('auth-token');
+    const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
+    return this.http.get<Produto[]>(this.apiUrl, { headers });
   }
 
   addProduto(produto: Produto): Observable<Produto> {
@@ -21,6 +23,7 @@ export class ProdutoService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<Produto>(`${this.apiUrl}/addProduto`, produto, { headers });
   }
+  
 
   updateProduto(id: number, produto: Produto): Observable<Produto> {
     const token = sessionStorage.getItem('auth-token');
