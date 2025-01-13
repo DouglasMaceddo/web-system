@@ -21,15 +21,16 @@ export class CatalogoComponent {
   produtos: Produto[] = [];
   produtosFiltrados: Produto[] = [];
   pesquisa: string = '';
-  firstName: string = '';
   categoriaSelecionada: String = '';
   carrinhoId: number = 0;
   quantidade: { [key: number]: number } = {};
+  isAdmin: boolean = false
 
   constructor(private catalogoService: CatalogoService, private carrinhoService: CarrinhoService,
-              private loginService: LoginService, private router: Router,  private toastService: ToastrService) { }
+    private loginService: LoginService, private router: Router, private toastService: ToastrService) { }
 
   ngOnInit(): void {
+    this.isAdmin = this.loginService.isAdmin();
     this.catalogoService.getCatalogo().subscribe(
       (data: Produto[]) => {
         this.produtos = data;
@@ -40,7 +41,7 @@ export class CatalogoComponent {
       }
     );
   }
-  
+
   filtrarPorCategoria(categoria: string): void {
     this.categoriaSelecionada = categoria;
     this.produtosFiltrados = this.produtos.filter(produto =>
@@ -63,7 +64,11 @@ export class CatalogoComponent {
     this.loginService.logout();
   }
 
-  navigateCarrinho(){
+  adicionarprodutos() {
+    this.router.navigate(["Administrador"])
+  }
+
+  navigateCarrinho() {
     this.router.navigate(["Carrinho"])
   }
 }

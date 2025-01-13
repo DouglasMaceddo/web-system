@@ -28,6 +28,7 @@
       <li><a (click)="filtrarPorCategoria('Promoção')">Promoções</a></li>
       <li><a (click)="filtrarPorCategoria('Praia')">Moda Praia</a></li>
       <li><a (click)="filtrarPorCategoria('Infantil')">Infantil</a></li>
+      <li><a *ngIf="isAdmin" (click)="adicionarprodutos()">Adicionar Produtos</a></li>
     </ul>
   </div>
 </div>
