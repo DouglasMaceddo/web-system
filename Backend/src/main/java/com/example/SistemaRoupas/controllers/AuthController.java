@@ -25,13 +25,19 @@ public class AuthController {
     private final TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody LoginRequestDTO body){
-        User user = this.repository.findByEmail(body.email()).orElseThrow(() -> new RuntimeException("User not found"));
-        if(passwordEncoder.matches(body.password(), user.getPassword())) {
+    public ResponseEntity<ResponseDTO> login(@RequestBody LoginRequestDTO body) {
+
+        User user = this.repository.findByEmail(body.email())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        if (passwordEncoder.matches(body.password(), user.getPassword())) {
             String token = this.tokenService.generateToken(user);
-            return ResponseEntity.ok(new ResponseDTO(user.getName(), token));
+            String role = user.getRole();
+            return ResponseEntity.ok(new ResponseDTO(user.getName(), token, role));
+
         }
+
         return ResponseEntity.badRequest().build();
+
     }
 
 
@@ -44,10 +50,12 @@ public class AuthController {
             newUser.setPassword(passwordEncoder.encode(body.password()));
             newUser.setEmail(body.email());
             newUser.setName(body.name());
+            newUser.setRole(body.role());
             this.repository.save(newUser);
 
             String token = this.tokenService.generateToken(newUser);
-            return ResponseEntity.ok(new ResponseDTO(newUser.getName(), token));
+            String role = newUser.getRole();
+            return ResponseEntity.ok(new ResponseDTO(newUser.getName(), token, role));
         }
         return ResponseEntity.badRequest().build();
     }
