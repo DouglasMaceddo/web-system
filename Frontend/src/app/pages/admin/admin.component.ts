@@ -41,11 +41,13 @@ export class AdminComponent implements OnInit {
   addProduto(): void {
     const formData = new FormData();
     formData.append('produto', JSON.stringify(this.produto));
+
+    // Adicionando a imagem selecionada ao FormData
     if (this.imagemSelecionada) {
-      formData.append('imagem', this.imagemSelecionada);
+        formData.append('imagem', this.imagemSelecionada);
     }
 
-    this.http.post<Produto>('/api/addProduto', formData).subscribe(
+    this.http.post<Produto>('http://localhost:8080/admin/addProduto', formData).subscribe(
       (newProduto) => {
         this.produtos.push(newProduto);
         this.toastr.success('Produto adicionado com sucesso!');
@@ -56,7 +58,7 @@ export class AdminComponent implements OnInit {
         this.toastr.error('Falha ao adicionar produto');
       }
     );
-  }
+}
 
   updateProduto(produto: Produto): void {
     this.produtoService.updateProduto(produto.id, produto).subscribe(

@@ -39,23 +39,13 @@
     <div class="form-group">
       <label for="imagemUrl">Imagem</label>
       <div class="upload-container">
-        <input
-          id="imagemUrl"
-          [(ngModel)]="produto.imagemUrl"
-          placeholder="URL da Imagem"
-          class="form-control"
-          type="text"
-        />
-        <input
-          type="file"
-          id="imagemUpload"
-          (change)="onFileSelected($event)"
-          class="form-control-file"
-          accept="image/*"
-        />
+        <input id="imagemUrl" [(ngModel)]="produto.imagemUrl" placeholder="URL da Imagem" class="form-control"
+          type="text" />
+        <input type="file" id="imagemUpload" (change)="onFileSelected($event)" class="form-control-file"
+          accept="image/*" />
       </div>
     </div>
-    
+
     <div class="form-group">
       <label for="Tamanho">Tamanho</label>
       <select id="Tamanho" [(ngModel)]="produto.tamanho" class="form-control">
@@ -67,7 +57,7 @@
 
     <button (click)="addProduto()" class="btn btn-primary">Adicionar Produto</button>
   </div>
-  
+
   <div class="produto-list">
     <h3>Lista de Produtos</h3>
     <div *ngFor="let produto of produtos" class="produto-card">
