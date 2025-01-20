@@ -32,7 +32,7 @@ public class AuthController {
         if (passwordEncoder.matches(body.password(), user.getPassword())) {
             String token = this.tokenService.generateToken(user);
             String role = user.getRole();
-            return ResponseEntity.ok(new ResponseDTO(user.getName(), token, role));
+            return ResponseEntity.ok(new ResponseDTO(user.getCpf(),user.getTelefone(),user.getName(), token, role));
 
         }
 
@@ -40,23 +40,25 @@ public class AuthController {
 
     }
 
-
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody RegisterRequestDTO body){
+    public ResponseEntity register(@RequestBody RegisterRequestDTO body) {
         Optional<User> user = this.repository.findByEmail(body.email());
 
         if(user.isEmpty()) {
             User newUser = new User();
             newUser.setPassword(passwordEncoder.encode(body.password()));
-            newUser.setEmail(body.email());
+            newUser.setCpf(body.cpf());
             newUser.setName(body.name());
+            newUser.setEmail(body.email());
+            newUser.setTelefone(body.telefone());
             newUser.setRole(body.role());
             this.repository.save(newUser);
 
             String token = this.tokenService.generateToken(newUser);
             String role = newUser.getRole();
-            return ResponseEntity.ok(new ResponseDTO(newUser.getName(), token, role));
+            return ResponseEntity.ok(new ResponseDTO(newUser.getCpf(), newUser.getTelefone(), newUser.getName(), token, role));
         }
         return ResponseEntity.badRequest().build();
     }
+
 }

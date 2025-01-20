@@ -3,7 +3,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/signup/signup.component';
 import { CatalogoComponent } from './pages/catalogo/catalogo.component';
 import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
-import { AdminComponent } from './pages/admin/admin.component';
+import { AdminComponent } from './admin/admin.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 export const routes: Routes = [
     {
@@ -29,6 +30,10 @@ export const routes: Routes = [
     {
         path: "Administrador",
         component: AdminComponent
+    },
+    {
+        path: "Perfil",
+        component: PerfilComponent
 
     }
 

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ProdutoService } from '../../services/produto.service';
-import { LoginService } from '../../services/login.service';
+import { ProdutoService } from '../services/produto.service';
+import { LoginService } from '../services/login.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Produto } from '../../Models/produto.model';
+import { Produto } from '../Models/produto.model';
 import { ToastrService } from 'ngx-toastr';
-import { CatalogoService } from '../../services/catalogo.service';
+import { CatalogoService } from '../services/catalogo.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({

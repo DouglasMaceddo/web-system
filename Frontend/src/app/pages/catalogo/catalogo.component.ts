@@ -71,4 +71,8 @@ export class CatalogoComponent {
   navigateCarrinho() {
     this.router.navigate(["Carrinho"])
   }
+  
+  navigatePerfil(){
+    this.router.navigate(["Perfil"])
+  }
 }
