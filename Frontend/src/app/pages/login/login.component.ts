@@ -50,7 +50,6 @@ export class LoginComponent {
         } else {
           this.router.navigate(['/Catalogo']);
         }
-        
         this.toastService.success("Login realizado com sucesso!");
       },
       error: () => {
