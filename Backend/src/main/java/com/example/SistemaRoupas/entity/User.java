@@ -16,8 +16,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+    private String cpf;
     private String name;
     private String email;
+    private String telefone;
     private String password;
     private String Role;
 }
