@@ -52,24 +52,15 @@ public class AdminController {
             @RequestParam("imagem") MultipartFile imagem) {
 
         try {
-
-            // Converte o JSON para o objeto Produto
             ObjectMapper objectMapper = new ObjectMapper();
             Produto produto = objectMapper.readValue(produtoJson, Produto.class);
 
-            // Obtemos o nome da imagem (sem salvar no servidor)
             String nomeImagem = obterNomeImagem(imagem);
-
-            // Define a URL da imagem (sem salvar, apenas usa o nome)
             produto.setImagemUrl("/uploads/" + nomeImagem);
-
-            // Adiciona o produto usando o serviço
             Produto novoProduto = produtoService.adicionarProduto(produto);
 
-            // Retorna a resposta de sucesso
             return ResponseEntity.status(HttpStatus.CREATED).body(novoProduto);
         } catch (Exception e) {
-            // Se ocorrer algum erro, retorna um erro HTTP 400
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
