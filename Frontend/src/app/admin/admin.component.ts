@@ -8,6 +8,7 @@ import { Produto } from '../Models/produto.model';
 import { ToastrService } from 'ngx-toastr';
 import { CatalogoService } from '../services/catalogo.service';
 import { HttpClient } from '@angular/common/http';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-admin',
@@ -25,7 +26,7 @@ export class AdminComponent implements OnInit {
 
   constructor(private loginService: LoginService, private produtoService: ProdutoService,
     private toastr: ToastrService, private router: Router, private catalogoService: CatalogoService,
-    private http: HttpClient ) { }
+    private http: HttpClient) { }
 
   ngOnInit(): void {
     this.catalogoService.getCatalogo().subscribe(
@@ -42,9 +43,8 @@ export class AdminComponent implements OnInit {
     const formData = new FormData();
     formData.append('produto', JSON.stringify(this.produto));
 
-    // Adicionando a imagem selecionada ao FormData
     if (this.imagemSelecionada) {
-        formData.append('imagem', this.imagemSelecionada);
+      formData.append('imagem', this.imagemSelecionada);
     }
 
     this.http.post<Produto>('http://localhost:8080/admin/addProduto', formData).subscribe(
@@ -58,7 +58,7 @@ export class AdminComponent implements OnInit {
         this.toastr.error('Falha ao adicionar produto');
       }
     );
-}
+  }
 
   updateProduto(produto: Produto): void {
     this.produtoService.updateProduto(produto.id, produto).subscribe(

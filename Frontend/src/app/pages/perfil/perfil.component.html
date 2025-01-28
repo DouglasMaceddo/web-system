@@ -1,4 +1,25 @@
-<header>
-    <button (click)="navigateVoltar()">voltar</button>
+<header class="profile-header">
+  <div class="profile-header-container">
+    <button class="back-button" (click)="navigateVoltar()">Voltar</button>
+  </div>
 </header>
-<p>perfil works!</p>
+
+<div class="profile-container">
+  <div class="profile-card">
+    <div class="profile-info">
+      <p><strong>CPF: </strong>{{ infoUsuario.cpf }}</p>
+      <p><strong>Nome: </strong>{{ infoUsuario.name }}</p>
+      <p><strong>Email: </strong>{{ infoUsuario.email }}</p>
+      <p><strong>Telefone: </strong>{{ infoUsuario.telefone }}</p>
+    </div>
+    
+    <div class="address-section">
+      <h3>Endereço de Entrega</h3>
+      <p><strong>Rua:</strong> </p>
+      <p><strong>Bairro:</strong> </p>
+      <p><strong>Cidade:</strong> </p>
+      <p><strong>Estado:</strong></p>
+      <button>Editar Endereço</button>
+    </div>
+  </div>
+</div>
